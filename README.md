@@ -6,6 +6,8 @@ Install tesseract:
 change path to tesseract in the main.py file to the corresponding file
 
 change username and password  (currently hardcoded in script)
+
+in order to prevent the bot from choosing a wrong quest at the first run edit the value_ref.txt and insert you current exp/second value of any quest
 -> run the bot.
 
 The bot currently chooses the best quest ep/time and starts the adventure
