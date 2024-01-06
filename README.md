@@ -1,3 +1,5 @@
+Runs with python 3.10
+
 Install tesseract:
 [https://github.com/tesseract-ocr/tesstrain](https://github.com/UB-Mannheim/tesseract/wiki)https://github.com/UB-Mannheim/tesseract/wiki
 
