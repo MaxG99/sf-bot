@@ -13,6 +13,8 @@ Install tesseract:
 The bot currently chooses the best quest ep/time and starts the adventure
 Items are not considered yet.
 
+!! Bot stops if there is no alu left so if you want to play >100 you have to drink manually and restart the bot
+
 Note: sometimes the xp per quest are not read correctly (one additional number at the start), to mitigate the problem a correction solution was built that truncates that first number
 it could result in an uncorrect reading from time to time but ist much better than without.
 
