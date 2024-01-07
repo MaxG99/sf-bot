@@ -88,7 +88,7 @@ def load_game(driver):
     loginButton = driver.find_element(By.ID, 'cta')
     ActionChains(driver).click(loginButton).perform()
     # wait for game load
-    time.sleep(10)
+    time.sleep(15)
 
     # target = find_template_center_in_current_screen(driver, "template/login_upscaled.png")
     click_mouse(driver, (1217.5, 950.5))
@@ -114,24 +114,6 @@ def prepareImageForTavernStateTextReadout(src):
 
 def prepareImageForQuestTextReadout(src):
     copy = src
-    text_hi = np.array([66, 192, 240])
-    text_lo = np.array([45, 137, 167])
-    text_mask = cv.inRange(copy, text_lo, text_hi)
-    copy[text_mask > 0] = (255, 255, 255)
-
-    alt_text_hi = np.array([2, 206, 255])
-    alt_text_lo = np.array([0, 197, 243])
-    alt_text_mask = cv.inRange(copy, alt_text_lo, alt_text_hi)
-    copy[alt_text_mask > 0] = (255, 255, 255)
-
-    plus_hi = np.array([3, 220, 45])
-    plus_lo = np.array([1, 91, 18])
-    plus_mask = cv.inRange(copy, plus_lo, plus_hi)
-    copy[plus_mask > 0] = (255, 255, 255)
-    minus_hi = np.array([22, 17, 210])
-    minus_lo = np.array([13, 10, 110])
-    minus_mask = cv.inRange(copy, minus_lo, minus_hi)
-    copy[minus_mask > 0] = (255, 255, 255)
 
     event_hi = np.array([255, 88, 208])
     event_lo = np.array([255, 88, 208])
@@ -139,7 +121,7 @@ def prepareImageForQuestTextReadout(src):
     copy[event_mask > 0] = (255, 255, 255)
 
     white = np.array([255, 255, 255])
-    white_lo = np.array([184, 182, 180])
+    white_lo = np.array([240, 240, 240])
     white_mask = cv.inRange(copy, white_lo, white)
     copy[white_mask == 0] = (0, 0, 0)
     return copy
@@ -273,19 +255,8 @@ def read_quest(driver, ref_quest_val):
                     print("new ep: ", ep)
                     ep_per_sec = float(ep / time_in_sec)
                 return ep_per_sec, time_in_sec
-            else:
-                ep = float(splitted[1])
-                time_val = splitted[2]
-                time_split = time_val.split(":")
-                time_in_sec = (float(time_split[0]) * 60) + float(time_split[1])
-                ep_per_sec = float(ep / time_in_sec)
-                if ep_per_sec > ref_quest_val * 6:
-                    ep = ep[1:]
-                    print("new ep: ", ep)
-                    ep_per_sec = float(ep / time_in_sec)
-                return ep_per_sec, time_in_sec
 
-    return ep_per_sec, 0
+    return 0.0, 0
 
 
 def is_quest_running():
@@ -308,7 +279,7 @@ def write_ref_quest_val(ref_val):
 if __name__ == '__main__':
     pytesseract.pytesseract.tesseract_cmd = 'C:\\Tesseract-OCR\\tesseract.exe'
     driver = webdriver.Firefox()
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(15)
     # template screenshots taken with this window size
     driver.set_window_rect(0, 0, 1920, 1080)
 
